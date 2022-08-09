@@ -1,10 +1,10 @@
 import * as yup from "yup";
+import useAuth from "../../hooks/useAuth";
 
 import { Container, FormWrapper } from './styles';
 import { Box, Button, CircularProgress, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from "react-hook-form";
-import { registerUser } from '../../api/user/registerUser';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 type RegisterData = {
@@ -17,6 +17,7 @@ const registerSchema = yup.object({
 
 export default function Register() {
   const [loading, setLoading] = useState(false);
+  const { signUp } = useAuth();
 
   const { register, handleSubmit, formState: { errors } } = 
   useForm<RegisterData>({
@@ -27,7 +28,7 @@ export default function Register() {
     setLoading(true);
 
     try {
-      await registerUser(data);
+      await signUp(data);
     } catch (error) {
       console.log('error trycatch')
       console.log(error)
