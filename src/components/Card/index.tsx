@@ -1,7 +1,5 @@
 import { 
   CardActionArea, 
-  CardContent, 
-  Typography 
 } from "@mui/material";
 
 import { CardComponent, CardMediaComponent } from "./styles";

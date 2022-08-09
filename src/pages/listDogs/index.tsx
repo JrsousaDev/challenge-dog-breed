@@ -49,6 +49,8 @@ export default function ListDogs() {
     }
   }
 
+  const optionSelectedBreed = breed !== '' ? false : true;
+
   return (
     <>
       <ModalPhoto
@@ -78,7 +80,11 @@ export default function ListDogs() {
               </Select>
             </FormControl>
 
-            <Button variant="contained" onClick={handleSearchDogsByBreed}>
+            <Button 
+              variant="contained" 
+              onClick={handleSearchDogsByBreed}
+              disabled={optionSelectedBreed}
+            >
               {loading ? (
                 <CircularProgress color="inherit" size={25} />
               ) : (
