@@ -4,6 +4,7 @@ import {
   useEffect,
   useState,
 } from "react";
+
 import { registerUser } from "../api/user/registerUser";
 import { parseCookies, setCookie, destroyCookie } from "nookies";
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +16,7 @@ type SignInCredentials = {
 type AuthContextData = {
   signUp: (data: SignInCredentials) => Promise<void>,
   signOut: () => void;
-  isAuthenticated: boolean,
+  isAuthenticated: boolean | undefined,
 }
 
 type AuthProviderProps = {
@@ -25,7 +26,7 @@ type AuthProviderProps = {
 export const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | undefined>();
   const Navigate = useNavigate();
 
   useEffect(() => {
@@ -64,7 +65,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
 
   function signOut() {
-    destroyCookie(undefined, 'challengeGraphQL.token');
+    destroyCookie(null, 'challengeDogBreed.token');
     Navigate('/');
   }
 

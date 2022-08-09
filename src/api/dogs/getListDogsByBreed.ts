@@ -1,10 +1,14 @@
 import { API_BACKEND } from "../../environments/values";
 import { getTokenInCookies } from "../../utils/getTokenInCookies";
 
-export const getListDogs = async () => {
+interface IGetListDogsByBreed {
+  breed: string;
+}
+
+export const getListDogsByBreed = async ({breed}: IGetListDogsByBreed) => {
   const authorization: string = getTokenInCookies();
 
-  const listDogs = await fetch(`${API_BACKEND}/list`, { 
+  const listDogs = await fetch(`${API_BACKEND}/list?breed=${breed}`, { 
     method: "GET",
     headers: {
       "Content-type": "application/json; charset=UTF-8",

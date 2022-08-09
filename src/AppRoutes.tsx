@@ -18,14 +18,14 @@ export default function AppRoutes() {
 
   const Private = ({ children }: IChildren) => {
     const { isAuthenticated } = useAuth();
-    if (!isAuthenticated) return <Navigate to="/" />
-    return children;
-  }
 
-  const UserIsAuthenticated = ({ children }: IChildren) => {
-    const { isAuthenticated } = useAuth();
-    if (isAuthenticated) return <Navigate to="/list" />
-    return children;
+    if (typeof isAuthenticated !== 'undefined') {
+      if(isAuthenticated) {
+        return children;
+      } else {
+        return <Navigate to="/" />
+      }
+    }
   }
 
   return (
@@ -35,11 +35,7 @@ export default function AppRoutes() {
 
           <Route
             path="/"
-            element={
-              <UserIsAuthenticated>
-                <Register />
-              </UserIsAuthenticated>
-            }
+            element={<Register />}
           />
 
           <Route
