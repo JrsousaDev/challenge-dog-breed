@@ -6,6 +6,6 @@ Projeto criado para processo seletivo.
 
 ### `npm start`
 
-# Aplicativo no ar (Vercel)
+# App no ar (Vercel)
 
 ### https://challenge-dog-breed.vercel.app/
